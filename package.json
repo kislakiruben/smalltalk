@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kislakiruben/dyteio/issues"
   },
-  "homepage": "https://github.com/kislakiruben/dyteio#readme"
+  "homepage": "https://github.com/kislakiruben/dyteio#readme",
+  "workspaces": [
+    "packages/ui"
+  ]
 }
