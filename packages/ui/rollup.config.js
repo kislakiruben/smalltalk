@@ -2,6 +2,7 @@ import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
+import postcss from "rollup-plugin-postcss";
 
 export default {
   input: "lib/index.ts",
@@ -17,5 +18,6 @@ export default {
       babelHelpers: "runtime",
     }),
     resolve(),
+    postcss(),
   ],
 };

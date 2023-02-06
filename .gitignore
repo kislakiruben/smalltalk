@@ -30,3 +30,6 @@ build
 
 # ts builds
 tsconfig.tsbuildinfo
+
+# rollup
+.rollup.cache
