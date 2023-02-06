@@ -2,7 +2,8 @@
   "name": "@dyteio/ui",
   "version": "1.0.0",
   "description": "",
-  "main": "lib/index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "rollup --config",

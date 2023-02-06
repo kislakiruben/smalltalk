@@ -8,7 +8,7 @@ export default {
   input: "lib/index.ts",
   output: {
     dir: "build",
-    format: "cjs",
+    format: "es",
   },
   external: [/node_modules/, /@babel\/runtime/, "react-dom"],
   plugins: [
