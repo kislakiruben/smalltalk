@@ -33,3 +33,6 @@ tsconfig.tsbuildinfo
 
 # rollup
 .rollup.cache
+
+
+packages/ui/public/tailwind.css

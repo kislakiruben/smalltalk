@@ -18,6 +18,15 @@ export default {
       babelHelpers: "runtime",
     }),
     resolve(),
-    postcss(),
+    postcss({
+      config: {
+        path: "./postcss.config.cjs",
+      },
+      extensions: [".css"],
+      minimize: true,
+      inject: {
+        insertAt: "top",
+      },
+    }),
   ],
 };
