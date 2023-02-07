@@ -1,4 +1,4 @@
-interface LabelProps {
+interface LabelProps extends React.ComponentPropsWithoutRef<"label"> {
   children: React.ReactNode;
 }
 
