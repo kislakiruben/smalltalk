@@ -15,8 +15,10 @@ export const Button = ({
   <button
     type="button"
     className={cx("border rounded-full text-xs font-semibold px-4 py-2", {
-      "bg-purple-500 border-purple-700 text-white": primary,
       "opacity-60": disabled,
+      "hover:enabled:bg-slate-100/50": !disabled && !primary,
+      "bg-purple-500 border-purple-600 text-white": primary,
+      "hover:bg-purple-600": primary && !disabled,
       "border-purple-500/60": primary && disabled,
     })}
     {...props}
