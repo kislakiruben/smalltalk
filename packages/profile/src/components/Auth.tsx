@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { Button } from "@dyteio/ui";
+
 import AuthLogIn from "./AuthLogIn";
 import AuthSignUp from "./AuthSignUp";
 

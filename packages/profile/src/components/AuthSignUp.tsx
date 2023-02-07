@@ -1,3 +1,4 @@
+import { Button, Input } from "@dyteio/ui";
 import { useEffect, useRef, useState } from "react";
 import { useSetRecoilState } from "recoil";
 
@@ -54,7 +55,7 @@ const AuthSignup = () => {
     <form onSubmit={onSubmit}>
       <div>
         <label htmlFor="email">Email:</label>
-        <input
+        <Input
           autoComplete="username"
           disabled={isProcessing}
           id="email"
@@ -67,7 +68,7 @@ const AuthSignup = () => {
       </div>
       <div>
         <label htmlFor="password">Password:</label>
-        <input
+        <Input
           autoComplete="new-password"
           disabled={isProcessing}
           id="password"
@@ -80,9 +81,9 @@ const AuthSignup = () => {
           Toggle password visibility
         </button>
       </div>
-      <button disabled={isProcessing} type="submit">
+      <Button disabled={isProcessing} primary type="submit">
         Sign up
-      </button>
+      </Button>
     </form>
   );
 };
