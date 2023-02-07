@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "ui:build": "npm run build -w @dyteio/ui",
+    "ui:dev": "npm run dev -w @dyteio/ui",
     "ui:sb": "npm run storybook -w @dyteio/ui",
     "profile:dev": "npm run start -w @dyteio/profile",
-    "meeting:dev": "npm run build -w @dyteio/meeting",
+    "meeting:dev": "npm run start -w @dyteio/meeting",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
