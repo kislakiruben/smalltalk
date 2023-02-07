@@ -3,8 +3,8 @@ export const Spinner = () => (
     <span className="animate-ping w-full h-full absolute rounded-full bg-purple-400 opacity-75 z-0" />
     <svg
       className="relative z-10"
-      width="41"
-      height="41"
+      width="40"
+      height="40"
       viewBox="0 0 41 41"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
