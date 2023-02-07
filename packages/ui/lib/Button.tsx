@@ -11,18 +11,16 @@ export const Button = ({
   disabled,
   primary,
   ...props
-}: ButtonProps) => {
-  return (
-    <button
-      type="button"
-      className={cx("border rounded-full text-xs font-semibold px-4 py-2", {
-        "bg-purple-500 border-purple-700 text-white": primary,
-        "opacity-60": disabled,
-        "border-purple-500/60": primary && disabled,
-      })}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+}: ButtonProps) => (
+  <button
+    type="button"
+    className={cx("border rounded-full text-xs font-semibold px-4 py-2", {
+      "bg-purple-500 border-purple-700 text-white": primary,
+      "opacity-60": disabled,
+      "border-purple-500/60": primary && disabled,
+    })}
+    {...props}
+  >
+    {children}
+  </button>
+);
