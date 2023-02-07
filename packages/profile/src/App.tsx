@@ -1,15 +1,31 @@
+import { AuthForm } from "@dyteio/ui";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 import { isAuthenticatedState } from "./atoms/auth";
-import Auth from "./components/Auth";
-import AuthLogOut from "./components/AuthLogOut";
+import Main from "./components/Main";
 import supabase from "./supabaseClient";
 
 const App = () => {
   const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [isAuthenticated, setIsAuthenticated] =
     useRecoilState(isAuthenticatedState);
+  const onLogInSubmit = async (email: string, password: string) => {
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        throw error;
+      } else {
+        setIsAuthenticated(true);
+      }
+    } catch (e) {
+      setIsAuthenticated(false);
+    }
+  };
 
   useEffect(() => {
     const checkSession = async () => {
@@ -33,11 +49,9 @@ const App = () => {
   return isCheckingSession ? (
     <pre>Loading...</pre>
   ) : isAuthenticated ? (
-    <div>
-      logged in <AuthLogOut />
-    </div>
+    <Main />
   ) : (
-    <Auth />
+    <AuthForm onLogInSubmit={onLogInSubmit} />
   );
 };
 

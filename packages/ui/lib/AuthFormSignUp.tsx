@@ -1,13 +1,20 @@
-import { Button, Input, InputGroup, Label } from "@dyteio/ui";
 import { useEffect, useRef, useState } from "react";
-import { useSetRecoilState } from "recoil";
 
-import { isAuthenticatedState } from "../atoms/auth";
-import supabase from "../supabaseClient";
+import { Button } from "./Button";
+import { Input } from "./Input";
+import { InputGroup } from "./InputGroup";
+import { Label } from "./Label";
 
-const AuthSignup = () => {
+interface AuthFormSignUpProps {
+  onShowLogIn: React.MouseEventHandler;
+  onSubmit: Function;
+}
+
+const AuthFormSignUp = ({
+  onShowLogIn,
+  onSubmit: onSubmitCallback,
+}: AuthFormSignUpProps) => {
   const emailInputRef = useRef<HTMLInputElement>(null);
-  const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -25,16 +32,7 @@ const AuthSignup = () => {
     setIsProcessing(true);
 
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
-      if (error) {
-        throw error;
-      } else {
-        setIsAuthenticated(true);
-      }
+      await onSubmitCallback(email, password);
       setIsProcessing(false);
     } catch (e) {
       setIsProcessing(false);
@@ -54,6 +52,7 @@ const AuthSignup = () => {
   return (
     <form onSubmit={onSubmit}>
       <InputGroup>
+        <h2 className="font-extrabold text-2xl mb-6">Sign up</h2>
         <Label htmlFor="email">Email:</Label>
         <Input
           autoComplete="username"
@@ -81,11 +80,23 @@ const AuthSignup = () => {
           Toggle password visibility
         </button>
       </InputGroup>
-      <Button disabled={isProcessing} primary type="submit">
-        Sign up
-      </Button>
+      <div className="flex items-center justify-between">
+        <Button disabled={isProcessing} primary type="submit">
+          Sign up
+        </Button>
+        <div className="text-sm text-slate-500">
+          Already have an account?{" "}
+          <button
+            className="text-purple-700 hover:underline"
+            onClick={onShowLogIn}
+            type="button"
+          >
+            Log in
+          </button>
+        </div>
+      </div>
     </form>
   );
 };
 
-export default AuthSignup;
+export default AuthFormSignUp;

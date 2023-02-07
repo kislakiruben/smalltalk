@@ -1,13 +1,20 @@
-import { Button, Input, InputGroup, Label } from "@dyteio/ui";
 import { useEffect, useRef, useState } from "react";
-import { useSetRecoilState } from "recoil";
 
-import { isAuthenticatedState } from "../atoms/auth";
-import supabase from "../supabaseClient";
+import { Button } from "./Button";
+import { Input } from "./Input";
+import { InputGroup } from "./InputGroup";
+import { Label } from "./Label";
 
-const AuthLogin = () => {
+interface AuthLoginProps {
+  onShowSignUp: React.MouseEventHandler;
+  onSubmit: Function;
+}
+
+const AuthLogin = ({
+  onShowSignUp,
+  onSubmit: onSubmitCallback,
+}: AuthLoginProps) => {
   const emailInputRef = useRef<HTMLInputElement>(null);
-  const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
   const [email, setEmail] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [password, setPassword] = useState("");
@@ -21,16 +28,7 @@ const AuthLogin = () => {
     setIsProcessing(true);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        throw error;
-      } else {
-        setIsAuthenticated(true);
-      }
+      await onSubmitCallback(email, password);
       setIsProcessing(false);
     } catch (e) {
       setIsProcessing(false);
@@ -49,6 +47,7 @@ const AuthLogin = () => {
 
   return (
     <form onSubmit={onSubmit}>
+      <h2 className="font-extrabold text-2xl mb-6">Log in</h2>
       <InputGroup>
         <Label htmlFor="email">Email:</Label>
         <Input
@@ -72,9 +71,21 @@ const AuthLogin = () => {
           value={password}
         />
       </InputGroup>
-      <Button disabled={isProcessing} primary type="submit">
-        Log in
-      </Button>
+      <div className="flex items-center justify-between">
+        <Button disabled={isProcessing} primary type="submit">
+          Log in
+        </Button>
+        <div className="text-sm text-slate-500">
+          Don't have an account yet?{" "}
+          <button
+            className="text-purple-700 hover:underline"
+            onClick={onShowSignUp}
+            type="button"
+          >
+            Sign up
+          </button>
+        </div>
+      </div>
     </form>
   );
 };
