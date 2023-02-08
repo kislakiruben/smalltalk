@@ -2,7 +2,6 @@ import { AuthForm, Header } from "@dyteio/ui";
 import { useRecoilValue } from "recoil";
 
 import { sessionState } from "../atoms/auth";
-import Profile from "./Profile";
 import supabase from "../supabaseClient";
 import { userSelector } from "../selectors/auth";
 
@@ -22,7 +21,11 @@ const Main = () => {
   return (
     <>
       <Header onLogOut={onLogOut} userName={user?.email} />
-      {session ? <Profile /> : <AuthForm onLogInSubmit={onLogInSubmit} />}
+      {session ? (
+        <pre>TBD: meeting</pre>
+      ) : (
+        <AuthForm onLogInSubmit={onLogInSubmit} />
+      )}
     </>
   );
 };

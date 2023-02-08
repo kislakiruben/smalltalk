@@ -5,7 +5,7 @@ import { Link } from "./Link";
 
 interface HeaderProps {
   onLogOut: Function;
-  userName: string;
+  userName?: string;
 }
 
 export const Header = ({
@@ -49,7 +49,7 @@ export const Header = ({
           <Link className="mr-5" href="//localhost:3000">
             Meeting
           </Link>
-          <Link href="//localhost:3001">Profile</Link>
+          <Link href="//localhost:3001">Account</Link>
         </nav>
         {userName ? (
           <div className="flex items-center">
