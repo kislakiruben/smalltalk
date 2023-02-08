@@ -15,6 +15,22 @@ const Main = () => {
       password,
     });
   };
+  const onSignUpSubmit = async (
+    name: string,
+    email: string,
+    password: string
+  ) => {
+    await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name,
+        },
+      },
+    });
+  };
+
   const onLogOut = async () => {
     await supabase.auth.signOut();
   };
@@ -29,7 +45,10 @@ const Main = () => {
       ) : (
         <div className="auth-wrapper">
           <div className="auth-form">
-            <AuthForm onLogInSubmit={onLogInSubmit} />
+            <AuthForm
+              onLogInSubmit={onLogInSubmit}
+              onSignUpSubmit={onSignUpSubmit}
+            />
           </div>
         </div>
       )}

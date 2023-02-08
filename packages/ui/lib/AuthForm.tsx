@@ -5,7 +5,7 @@ import AuthFormSignUp from "./AuthFormSignUp";
 
 interface AuthFormProps {
   onLogInSubmit: (email: string, password: string) => void;
-  onSignUpSubmit: (email: string, password: string) => void;
+  onSignUpSubmit: (name: string, email: string, password: string) => void;
 }
 
 export const AuthForm = ({ onLogInSubmit, onSignUpSubmit }: AuthFormProps) => {

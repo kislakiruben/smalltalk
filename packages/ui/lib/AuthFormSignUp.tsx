@@ -35,7 +35,7 @@ const AuthFormSignUp = ({
     setIsProcessing(true);
 
     try {
-      await onSubmitCallback(email, password);
+      await onSubmitCallback(name, email, password);
       setIsProcessing(false);
     } catch (e) {
       setIsProcessing(false);

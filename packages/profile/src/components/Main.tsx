@@ -15,13 +15,31 @@ const Main = () => {
       password,
     });
   };
+  const onSignUpSubmit = async (
+    name: string,
+    email: string,
+    password: string
+  ) => {
+    await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name,
+        },
+      },
+    });
+  };
   const onLogOut = async () => {
     await supabase.auth.signOut();
   };
 
   return (
     <div className="wrapper">
-      <Header onLogOut={onLogOut} userName={user?.email} />
+      <Header
+        onLogOut={onLogOut}
+        userName={user?.user_metadata.name || user?.email}
+      />
       {session ? (
         <div className="content">
           <Account />
@@ -29,7 +47,10 @@ const Main = () => {
       ) : (
         <div className="auth-wrapper">
           <div className="auth-form">
-            <AuthForm onLogInSubmit={onLogInSubmit} />
+            <AuthForm
+              onLogInSubmit={onLogInSubmit}
+              onSignUpSubmit={onSignUpSubmit}
+            />
           </div>
         </div>
       )}
