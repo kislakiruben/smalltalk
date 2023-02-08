@@ -5,12 +5,13 @@ import { Link } from "./Link";
 
 interface HeaderProps {
   onLogOut: Function;
-  user: {
-    name: string;
-  };
+  userName: string;
 }
 
-export const Header = ({ onLogOut: onLogOutCallback, user }: HeaderProps) => {
+export const Header = ({
+  onLogOut: onLogOutCallback,
+  userName,
+}: HeaderProps) => {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const onClick = async () => {
     setIsLoggingOut(true);
@@ -50,10 +51,10 @@ export const Header = ({ onLogOut: onLogOutCallback, user }: HeaderProps) => {
           </Link>
           <Link href="//localhost:3001">Profile</Link>
         </nav>
-        {user ? (
+        {userName ? (
           <div className="flex items-center">
             <p className="text-sm mr-3">
-              Welcome, <strong>{user.name}</strong>
+              Welcome, <strong>{userName}</strong>
             </p>
             <Button disabled={isLoggingOut} onClick={onClick} type="button">
               Log out

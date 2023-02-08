@@ -4,9 +4,11 @@ import { useRecoilValue } from "recoil";
 import { sessionState } from "../atoms/auth";
 import Profile from "./Profile";
 import supabase from "../supabaseClient";
+import { userSelector } from "../selectors/auth";
 
 const Main = () => {
   const session = useRecoilValue(sessionState);
+  const user = useRecoilValue(userSelector);
   const onLogInSubmit = async (email: string, password: string) => {
     await supabase.auth.signInWithPassword({
       email,
@@ -19,7 +21,7 @@ const Main = () => {
 
   return (
     <>
-      <Header onLogOut={onLogOut} />
+      <Header onLogOut={onLogOut} userName={user.email} />
       {session ? <Profile /> : <AuthForm onLogInSubmit={onLogInSubmit} />}
     </>
   );
