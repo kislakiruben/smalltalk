@@ -8,6 +8,7 @@ import {
   currentUserParticipantSelector,
   customParticipantIdSelector,
 } from "../selectors/dyte";
+import { userSelector } from "../selectors/auth";
 
 interface MeetingProps {
   id: string;
@@ -19,10 +20,11 @@ const Meeting = ({ id, title }: MeetingProps) => {
   const customParticipantId = useRecoilValue(customParticipantIdSelector);
   const currentParticipant = useRecoilValue(currentUserParticipantSelector(id));
   const participants = useRecoilValue(participantsState(id));
+  const user = useRecoilValue(userSelector);
   const onJoinMeeting = async () => {
     const response = await dyteApiClient.post(`/meetings/${id}/participants`, {
-      name: "Ruben",
-      preset_name: "prototype",
+      name: user?.user_metadata.name || user?.email,
+      preset_name: "group_call_participant",
       custom_participant_id: customParticipantId,
     });
 

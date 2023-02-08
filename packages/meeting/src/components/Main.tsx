@@ -37,7 +37,10 @@ const Main = () => {
 
   return (
     <div className="wrapper">
-      <Header onLogOut={onLogOut} userName={user?.email} />
+      <Header
+        onLogOut={onLogOut}
+        userName={user?.user_metadata.name || user?.email}
+      />
       {session ? (
         <div className="content">
           <Meetings />
