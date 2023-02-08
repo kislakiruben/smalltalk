@@ -2,7 +2,7 @@ import { AuthForm, Header } from "@dyteio/ui";
 import { useRecoilValue } from "recoil";
 
 import { sessionState } from "../atoms/auth";
-import Profile from "./Profile";
+import Account from "./Account";
 import supabase from "../supabaseClient";
 import { userSelector } from "../selectors/auth";
 
@@ -24,7 +24,7 @@ const Main = () => {
       <Header onLogOut={onLogOut} userName={user?.email} />
       {session ? (
         <div className="content">
-          <Profile />
+          <Account />
         </div>
       ) : (
         <div className="auth-wrapper">
