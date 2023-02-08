@@ -11,3 +11,13 @@ body,
   width: 100vw;
   justify-content: center;
 }
+
+.loading-text {
+  margin-left: 10px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
