@@ -1,4 +1,4 @@
-import { Spinner } from "@dyteio/ui";
+import { Spinner } from "@smalltalk/ui";
 import { DyteProvider, useDyteClient } from "@dytesdk/react-web-core";
 import { useEffect } from "react";
 

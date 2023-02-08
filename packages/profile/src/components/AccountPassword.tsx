@@ -1,4 +1,4 @@
-import { Button, Label, Input } from "@dyteio/ui";
+import { Button, Label, Input } from "@smalltalk/ui";
 import { useState } from "react";
 
 import supabase from "../supabaseClient";

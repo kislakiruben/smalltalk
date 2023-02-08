@@ -1,4 +1,4 @@
-import { Button } from "@dyteio/ui";
+import { Button } from "@smalltalk/ui";
 import pluralize from "pluralize";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 

@@ -1,26 +1,26 @@
 {
-  "name": "dyteio",
+  "name": "smalltalk",
   "version": "1.0.0",
   "description": "Dyte.io prototype",
   "main": "index.js",
   "scripts": {
-    "ui:build": "npm run build -w @dyteio/ui",
-    "ui:dev": "npm run dev -w @dyteio/ui",
-    "ui:sb": "npm run storybook -w @dyteio/ui",
-    "profile:dev": "npm run start -w @dyteio/profile",
-    "meeting:dev": "npm run start -w @dyteio/meeting",
+    "ui:build": "npm run build -w @smalltalk/ui",
+    "ui:dev": "npm run dev -w @smalltalk/ui",
+    "ui:sb": "npm run storybook -w @smalltalk/ui",
+    "profile:dev": "npm run start -w @smalltalk/profile",
+    "meeting:dev": "npm run start -w @smalltalk/meeting",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kislakiruben/dyteio.git"
+    "url": "git+https://github.com/kislakiruben/smalltalk.git"
   },
   "author": "Ruben Kislaki",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kislakiruben/dyteio/issues"
+    "url": "https://github.com/kislakiruben/smalltalk/issues"
   },
-  "homepage": "https://github.com/kislakiruben/dyteio#readme",
+  "homepage": "https://github.com/kislakiruben/smalltalk#readme",
   "workspaces": [
     "packages/ui",
     "packages/meeting",

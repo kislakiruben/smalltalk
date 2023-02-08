@@ -1,4 +1,4 @@
-import { Spinner } from "@dyteio/ui";
+import { Spinner } from "@smalltalk/ui";
 import { Suspense } from "react";
 
 import Main from "./components/Main";

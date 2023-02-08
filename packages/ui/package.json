@@ -1,5 +1,5 @@
 {
-  "name": "@dyteio/ui",
+  "name": "@smalltalk/ui",
   "version": "1.0.0",
   "description": "",
   "main": "build/index.js",
@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kislakiruben/dyteio.git"
+    "url": "git+https://github.com/kislakiruben/smalltalk.git"
   },
   "keywords": [],
   "author": "Ruben Kislaki",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kislakiruben/dyteio/issues"
+    "url": "https://github.com/kislakiruben/smalltalk/issues"
   },
-  "homepage": "https://github.com/kislakiruben/dyteio#readme",
+  "homepage": "https://github.com/kislakiruben/smalltalk#readme",
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/plugin-transform-runtime": "^7.19.6",

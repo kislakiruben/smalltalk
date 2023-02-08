@@ -1,4 +1,4 @@
-import { Button } from "@dyteio/ui";
+import { Button } from "@smalltalk/ui";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 

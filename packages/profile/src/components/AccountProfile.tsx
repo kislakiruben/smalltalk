@@ -1,4 +1,4 @@
-import { Button, Label, Input } from "@dyteio/ui";
+import { Button, Label, Input } from "@smalltalk/ui";
 import { useEffect, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 

@@ -1,4 +1,4 @@
-import { AuthForm, Header } from "@dyteio/ui";
+import { AuthForm, Header } from "@smalltalk/ui";
 import { useRecoilValue } from "recoil";
 
 import { sessionState } from "../atoms/auth";
