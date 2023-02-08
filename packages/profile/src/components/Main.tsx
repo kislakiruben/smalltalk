@@ -1,27 +1,27 @@
-import { Header } from "@dyteio/ui";
-import { useSetRecoilState } from "recoil";
+import { AuthForm, Header } from "@dyteio/ui";
+import { useRecoilValue } from "recoil";
 
+import { sessionState } from "../atoms/auth";
 import Profile from "./Profile";
 import supabase from "../supabaseClient";
-import { isAuthenticatedState } from "../atoms/auth";
 
 const Main = () => {
-  const setIsAuthenticated = useSetRecoilState(isAuthenticatedState);
+  const session = useRecoilValue(sessionState);
+  const onLogInSubmit = async (email: string, password: string) => {
+    await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+  };
   const onLogOut = async () => {
-    const { error } = await supabase.auth.signOut();
-
-    if (error) {
-      throw error;
-    } else {
-      setIsAuthenticated(false);
-    }
+    await supabase.auth.signOut();
   };
 
   return (
-    <div>
+    <>
       <Header onLogOut={onLogOut} />
-      <Profile />
-    </div>
+      {session ? <Profile /> : <AuthForm onLogInSubmit={onLogInSubmit} />}
+    </>
   );
 };
 
