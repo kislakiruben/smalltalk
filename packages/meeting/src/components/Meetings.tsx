@@ -12,12 +12,14 @@ const Meetings = () => {
   return authToken ? (
     <DyteWrapper authToken={authToken} />
   ) : (
-    <div>
-      <Button primary type="button">
-        Create meeting
-      </Button>
+    <div className="meetings">
+      <div className="meetings__header">
+        <Button primary type="button">
+          Create a new meeting
+        </Button>
+      </div>
       {meetings.length > 0 ? (
-        <ul>
+        <ul className="meetings__list">
           {meetings.map((meeting) => (
             <li key={meeting.id}>
               <Meeting id={meeting.id} title={meeting.title} />
@@ -25,7 +27,7 @@ const Meetings = () => {
           ))}
         </ul>
       ) : (
-        <div>
+        <div className="meetings__empty">
           <p>There are not meetings</p>
         </div>
       )}

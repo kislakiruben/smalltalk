@@ -20,10 +20,18 @@ const Main = () => {
   };
 
   return (
-    <>
+    <div className="wrapper">
       <Header onLogOut={onLogOut} userName={user?.email} />
-      {session ? <Profile /> : <AuthForm onLogInSubmit={onLogInSubmit} />}
-    </>
+      {session ? (
+        <Profile />
+      ) : (
+        <div className="auth-wrapper">
+          <div className="auth-form">
+            <AuthForm onLogInSubmit={onLogInSubmit} />
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

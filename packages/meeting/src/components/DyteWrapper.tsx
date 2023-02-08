@@ -20,9 +20,9 @@ const DyteWrapper = ({ authToken }: DyteWrapperProps) => {
   return (
     <DyteProvider
       fallback={
-        <div className="loading">
+        <div className="content__loading">
           <Spinner />
-          <span className="loading-text">Initializing room...</span>
+          <span className="loading__text">Initializing room...</span>
         </div>
       }
       value={client}

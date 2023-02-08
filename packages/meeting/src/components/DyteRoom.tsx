@@ -37,11 +37,7 @@ const DyteRoom = () => {
     };
   }, [meeting, removeParticipant, setAuthToken]);
 
-  return (
-    <div className="grow">
-      <DyteMeeting meeting={meeting} mode="fill" />
-    </div>
-  );
+  return <DyteMeeting meeting={meeting} mode="fill" />;
 };
 
 export default DyteRoom;

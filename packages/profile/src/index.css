@@ -11,3 +11,35 @@ body,
   width: 100vw;
   justify-content: center;
 }
+
+.loading-text {
+  margin-left: 10px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.auth-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-form {
+  max-width: 480px;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  width: 100%;
+}
+
+.content {
+  max-width: calc(1280px + 2.5rem);
+  margin: 40px auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  width: 100%;
+}
