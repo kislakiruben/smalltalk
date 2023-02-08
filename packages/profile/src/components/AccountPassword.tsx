@@ -5,17 +5,16 @@ import supabase from "../supabaseClient";
 
 const AccountPassword = () => {
   const [isSaving, setIsSaving] = useState(false);
-  const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const onChangeOldPassword = (event: React.FormEvent<HTMLInputElement>) => {
-    setOldPassword((event.target as HTMLInputElement).value);
-  };
   const onChangeNewPassword = (event: React.FormEvent<HTMLInputElement>) => {
     setNewPassword((event.target as HTMLInputElement).value);
   };
   const asyncSubmit = async () => {
     setIsSaving(true);
     try {
+      await supabase.auth.updateUser({
+        password: newPassword,
+      });
       setIsSaving(false);
     } catch (e) {
       setIsSaving(false);
@@ -27,20 +26,10 @@ const AccountPassword = () => {
   };
 
   return (
-    <form className="section">
+    <form className="section" onSubmit={onSubmit}>
       <h3 className="section__title">Password</h3>
       <div className="section__group">
-        <Label htmlFor="currentPassword">Old password:</Label>
-        <Input
-          autoComplete="current-password"
-          id="currentPassword"
-          onChange={onChangeOldPassword}
-          type="password"
-          value={oldPassword}
-        />
-      </div>
-      <div className="section__group">
-        <Label htmlFor="newPassword">Old password:</Label>
+        <Label htmlFor="newPassword">New password:</Label>
         <Input
           autoComplete="new-password"
           id="newPassword"
