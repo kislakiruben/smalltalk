@@ -26,6 +26,7 @@ export const Button = ({
       },
       className
     )}
+    disabled={disabled}
     {...props}
   >
     {children}
