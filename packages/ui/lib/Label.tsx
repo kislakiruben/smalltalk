@@ -3,7 +3,7 @@ interface LabelProps extends React.ComponentPropsWithoutRef<"label"> {
 }
 
 export const Label = ({ children, ...props }: LabelProps) => (
-  <label className="block font-semibold text-sm mb-1" {...props}>
+  <label className="block font-semibold text-sm mb-1 cursor-pointer" {...props}>
     {children}
   </label>
 );
