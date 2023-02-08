@@ -6,9 +6,13 @@ import { Link } from "./Link";
 interface HeaderProps {
   onLogOut: Function;
   userName?: string;
+  meetingBaseUrl?: string;
+  accountBaseUrl?: string;
 }
 
 export const Header = ({
+  accountBaseUrl,
+  meetingBaseUrl,
   onLogOut: onLogOutCallback,
   userName,
 }: HeaderProps) => {
@@ -47,10 +51,10 @@ export const Header = ({
             <h1 className="font-extrabold text-lg">Dyte Connect</h1>
           </div>
           <nav className="grow">
-            <Link className="mr-5" href="//localhost:3000">
+            <Link className="mr-5" href={meetingBaseUrl || "javascript:;"}>
               Meeting
             </Link>
-            <Link href="//localhost:3001">Account</Link>
+            <Link href={accountBaseUrl || "javascript:;"}>Account</Link>
           </nav>
           {userName ? (
             <div className="flex items-center">
