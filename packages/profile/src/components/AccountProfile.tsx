@@ -1,13 +1,17 @@
 import { Button, Label, Input } from "@dyteio/ui";
 import { useEffect, useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
+
+import { userSelector } from "../selectors/auth";
+import supabase from "../supabaseClient";
 
 const AccountProfile = () => {
+  const user = useRecoilValue(userSelector);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
-  const [bio, setBio] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(user?.user_metadata.name || "");
+  const [location, setLocation] = useState(user?.user_metadata.location || "");
+  const [bio, setBio] = useState(user?.user_metadata.bio || "");
   const onChangeName = (event: React.FormEvent<HTMLInputElement>) => {
     setName((event.target as HTMLInputElement).value);
   };
@@ -17,16 +21,16 @@ const AccountProfile = () => {
   const onChangeBio = (event: React.FormEvent<HTMLInputElement>) => {
     setBio((event.target as HTMLInputElement).value);
   };
-  const onChangeEmail = (event: React.FormEvent<HTMLInputElement>) => {
-    setEmail((event.target as HTMLInputElement).value);
-  };
   const asyncSubmit = async () => {
     setIsSaving(true);
-    try {
-      setIsSaving(false);
-    } catch (e) {
-      setIsSaving(false);
-    }
+    await supabase.auth.updateUser({
+      data: {
+        bio,
+        name,
+        location,
+      },
+    });
+    setIsSaving(false);
   };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     asyncSubmit();
@@ -45,11 +49,12 @@ const AccountProfile = () => {
       <div className="section__group">
         <Label htmlFor="email">Email:</Label>
         <Input
+          autoFocus
+          disabled
           id="email"
-          onChange={onChangeEmail}
           ref={emailInputRef}
           type="text"
-          value={email}
+          value={user?.email || ""}
         />
       </div>
       <div className="section__group">
