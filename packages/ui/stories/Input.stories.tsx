@@ -20,6 +20,7 @@ WithValue.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   disabled: true,
+  value: "someone@example.com",
 };
 
 export const WithPlaceholder = Template.bind({});
