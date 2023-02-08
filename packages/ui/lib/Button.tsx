@@ -2,6 +2,7 @@ import cx from "classnames";
 
 interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   children: React.ReactNode;
+  className?: string;
   disabled?: boolean;
   primary?: boolean;
 }
