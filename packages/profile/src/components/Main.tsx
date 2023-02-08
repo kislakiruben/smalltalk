@@ -23,7 +23,9 @@ const Main = () => {
     <div className="wrapper">
       <Header onLogOut={onLogOut} userName={user?.email} />
       {session ? (
-        <Profile />
+        <div className="content">
+          <Profile />
+        </div>
       ) : (
         <div className="auth-wrapper">
           <div className="auth-form">
