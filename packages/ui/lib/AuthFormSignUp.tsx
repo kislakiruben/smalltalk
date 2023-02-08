@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 import { InputGroup } from "./InputGroup";
 import { Label } from "./Label";
+import { PasswordInput } from "./PasswordInput";
 
 interface AuthFormSignUpProps {
   onShowLogIn: React.MouseEventHandler;
@@ -18,7 +19,6 @@ const AuthFormSignUp = ({
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const onChangeEmail = (event: React.FormEvent<HTMLInputElement>) => {
     setEmail((event.target as HTMLInputElement).value);
   };
@@ -27,9 +27,6 @@ const AuthFormSignUp = ({
   };
   const onChangeName = (event: React.FormEvent<HTMLInputElement>) => {
     setName((event.target as HTMLInputElement).value);
-  };
-  const onTogglePasswordVisibility = () => {
-    setIsPasswordVisible((prevState) => !prevState);
   };
   const asyncSubmitSignUp = async () => {
     setIsProcessing(true);
@@ -76,18 +73,14 @@ const AuthFormSignUp = ({
       </InputGroup>
       <InputGroup>
         <Label htmlFor="password">Password</Label>
-        <Input
+        <PasswordInput
           autoComplete="new-password"
           disabled={isProcessing}
           id="password"
           name="password"
           onChange={onChangePassword}
-          type={isPasswordVisible ? "text" : "password"}
           value={password}
         />
-        <button onClick={onTogglePasswordVisibility} type="button">
-          Toggle password visibility
-        </button>
       </InputGroup>
       <div className="flex items-center justify-between">
         <Button disabled={isProcessing} primary type="submit">

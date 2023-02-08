@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 import { InputGroup } from "./InputGroup";
 import { Label } from "./Label";
+import { PasswordInput } from "./PasswordInput";
 
 interface AuthLoginProps {
   onShowSignUp: React.MouseEventHandler;
@@ -55,12 +56,11 @@ const AuthLogin = ({
       </InputGroup>
       <InputGroup>
         <Label htmlFor="password">Password</Label>
-        <Input
+        <PasswordInput
           autoComplete="current-password"
           disabled={isProcessing}
           id="password"
           onChange={onChangePassword}
-          type="password"
           value={password}
         />
       </InputGroup>
