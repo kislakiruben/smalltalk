@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { Button } from "./Button";
 import { Input } from "./Input";
@@ -14,7 +14,6 @@ const AuthLogin = ({
   onShowSignUp,
   onSubmit: onSubmitCallback,
 }: AuthLoginProps) => {
-  const emailInputRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [password, setPassword] = useState("");
@@ -39,29 +38,23 @@ const AuthLogin = ({
     event.preventDefault();
   };
 
-  useEffect(() => {
-    if (emailInputRef.current) {
-      emailInputRef.current.focus();
-    }
-  }, []);
-
   return (
     <form onSubmit={onSubmit}>
       <h2 className="font-extrabold text-2xl mb-6">Log in</h2>
       <InputGroup>
-        <Label htmlFor="email">Email:</Label>
+        <Label htmlFor="email">Email</Label>
         <Input
           autoComplete="username"
+          autoFocus
           disabled={isProcessing}
           id="email"
           onChange={onChangeEmail}
-          ref={emailInputRef}
           type="email"
           value={email}
         />
       </InputGroup>
       <InputGroup>
-        <Label htmlFor="password">Password:</Label>
+        <Label htmlFor="password">Password</Label>
         <Input
           autoComplete="current-password"
           disabled={isProcessing}
@@ -78,7 +71,7 @@ const AuthLogin = ({
         <div className="text-sm text-slate-500">
           Don't have an account yet?{" "}
           <button
-            className="text-purple-700 hover:underline"
+            className="text-purple-700 font-bold hover:underline"
             onClick={onShowSignUp}
             type="button"
           >

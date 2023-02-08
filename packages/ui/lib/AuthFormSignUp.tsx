@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { Button } from "./Button";
 import { Input } from "./Input";
@@ -14,8 +14,8 @@ const AuthFormSignUp = ({
   onShowLogIn,
   onSubmit: onSubmitCallback,
 }: AuthFormSignUpProps) => {
-  const emailInputRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -24,6 +24,9 @@ const AuthFormSignUp = ({
   };
   const onChangePassword = (event: React.FormEvent<HTMLInputElement>) => {
     setPassword((event.target as HTMLInputElement).value);
+  };
+  const onChangeName = (event: React.FormEvent<HTMLInputElement>) => {
+    setName((event.target as HTMLInputElement).value);
   };
   const onTogglePasswordVisibility = () => {
     setIsPasswordVisible((prevState) => !prevState);
@@ -43,30 +46,36 @@ const AuthFormSignUp = ({
     event.preventDefault();
   };
 
-  useEffect(() => {
-    if (emailInputRef.current) {
-      emailInputRef.current.focus();
-    }
-  }, []);
-
   return (
     <form onSubmit={onSubmit}>
+      <h2 className="font-extrabold text-2xl mb-6">Sign up</h2>
       <InputGroup>
-        <h2 className="font-extrabold text-2xl mb-6">Sign up</h2>
-        <Label htmlFor="email">Email:</Label>
+        <Label htmlFor="name">Name</Label>
+        <Input
+          autoComplete="name"
+          autoFocus
+          disabled={isProcessing}
+          id="name"
+          name="name"
+          onChange={onChangeName}
+          type="text"
+          value={name}
+        />
+      </InputGroup>
+      <InputGroup>
+        <Label htmlFor="email">Email</Label>
         <Input
           autoComplete="username"
           disabled={isProcessing}
           id="email"
           name="email"
           onChange={onChangeEmail}
-          ref={emailInputRef}
           type="email"
           value={email}
         />
       </InputGroup>
       <InputGroup>
-        <Label htmlFor="password">Password:</Label>
+        <Label htmlFor="password">Password</Label>
         <Input
           autoComplete="new-password"
           disabled={isProcessing}
@@ -87,7 +96,7 @@ const AuthFormSignUp = ({
         <div className="text-sm text-slate-500">
           Already have an account?{" "}
           <button
-            className="text-purple-700 hover:underline"
+            className="text-purple-700 font-bold hover:underline"
             onClick={onShowLogIn}
             type="button"
           >

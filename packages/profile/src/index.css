@@ -31,6 +31,7 @@ body,
 
 .auth-form {
   max-width: 480px;
+  min-height: 390px;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   width: 100%;
