@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Dyte.io prototype",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "ui:build": "npm run build -w @smalltalk/ui",
     "ui:dev": "npm run dev -w @smalltalk/ui",
