@@ -7,6 +7,6 @@ export const userSelector = selector({
   get: ({ get }) => {
     const session = get(sessionState);
 
-    return session ? session.user : null;
+    return session ? session?.user : null;
   },
 });

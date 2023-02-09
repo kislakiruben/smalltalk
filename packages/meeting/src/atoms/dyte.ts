@@ -1,10 +1,11 @@
 import { atom, atomFamily } from "recoil";
 
 import dyteApiClient from "../dyteApiClient";
+import { IMeeting } from "../types";
 
 export const meetingsState = atom({
   key: "atoms/dyte/meetings",
-  default: [],
+  default: [] as IMeeting[],
   effects: [
     ({ setSelf, trigger }) => {
       if (trigger === "get") {

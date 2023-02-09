@@ -1,10 +1,11 @@
+import { Session } from "@supabase/supabase-js";
 import { atom, DefaultValue } from "recoil";
 
 import supabase from "../supabaseClient";
 
 export const sessionState = atom({
   key: "atoms/auth/session",
-  default: null,
+  default: null as null | Session,
   effects: [
     ({ setSelf, onSet, trigger }) => {
       if (trigger === "get") {
@@ -18,9 +19,10 @@ export const sessionState = atom({
         if (event === "SIGNED_OUT" || event === "USER_DELETED") {
           setSelf(null);
         } else if (
-          event === "SIGNED_IN" ||
-          event === "TOKEN_REFRESHED" ||
-          event === "USER_UPDATED"
+          (event === "SIGNED_IN" ||
+            event === "TOKEN_REFRESHED" ||
+            event === "USER_UPDATED") &&
+          session !== null
         ) {
           setSelf(session);
         }

@@ -6,6 +6,7 @@ import { currentAuthTokenState, meetingsState } from "../atoms/dyte";
 import DyteWrapper from "./DyteWrapper";
 import Meeting from "./Meeting";
 import dyteApiClient from "../dyteApiClient";
+import { IMeeting } from "../types";
 
 const Meetings = () => {
   const authToken = useRecoilValue(currentAuthTokenState);
@@ -19,8 +20,8 @@ const Meetings = () => {
         preferred_region: "ap-south-1",
       });
 
-      setMeetings((currentMeetings): [] => {
-        return [...currentMeetings, response.data.data] as [];
+      setMeetings((currentMeetings) => {
+        return currentMeetings.concat([response.data.data as IMeeting]);
       });
       setIsCreating(false);
     } catch (e) {
@@ -34,7 +35,7 @@ const Meetings = () => {
     <div className="meetings">
       {meetings.length > 0 ? (
         <ul className="meetings__list">
-          {meetings.map((meeting) => (
+          {meetings.map((meeting: IMeeting) => (
             <li key={meeting.id}>
               <Meeting id={meeting.id} title={meeting.title} />
             </li>

@@ -5,6 +5,7 @@ import { useSetRecoilState } from "recoil";
 
 import { currentAuthTokenState, participantsState } from "../atoms/dyte";
 import dyteApiClient from "../dyteApiClient";
+import { IParticipant } from "../types";
 
 const DyteRoom = () => {
   const { meeting } = useDyteMeeting();
@@ -19,7 +20,7 @@ const DyteRoom = () => {
 
     setParticipants((participants) => {
       return participants.filter(
-        (participant) => participant.id !== meeting.self.userId
+        (participant: IParticipant) => participant.id !== meeting.self.userId
       );
     });
   }, [meeting.meta.roomName, meeting.self.userId, setParticipants]);

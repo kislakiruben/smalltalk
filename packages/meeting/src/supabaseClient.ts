@@ -7,10 +7,9 @@ const cookieOptions = { expires: 100 * 365 * 24 * 60 * 60 };
 
 export default createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    // persistSession: false,
     storage: {
       getItem: (key) => {
-        return cookies.get(key);
+        return cookies.get(key) || null;
       },
       setItem: (key, value) => {
         cookies.set(key, value, cookieOptions);

@@ -9,6 +9,7 @@ import {
   customParticipantIdSelector,
 } from "../selectors/dyte";
 import { userSelector } from "../selectors/auth";
+import { IParticipant } from "../types";
 
 interface MeetingProps {
   id: string;
@@ -31,8 +32,12 @@ const Meeting = ({ id, title }: MeetingProps) => {
     setAuthToken(response.data.data.token);
   };
   const onOpenMeeting = async () => {
+    if (!currentParticipant) return;
+
     const response = await dyteApiClient.post(
-      `/meetings/${id}/participants/${currentParticipant.id}/token`
+      `/meetings/${id}/participants/${
+        (currentParticipant as IParticipant).id
+      }/token`
     );
 
     setAuthToken(response.data.data.token);

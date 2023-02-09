@@ -1,10 +1,11 @@
+import { Session } from "@supabase/supabase-js";
 import { atom, DefaultValue } from "recoil";
 
 import supabase from "../supabaseClient";
 
 export const sessionState = atom({
   key: "atoms/auth/session",
-  default: null,
+  default: null as null | Session,
   effects: [
     ({ setSelf, onSet, trigger }) => {
       if (trigger === "get") {
