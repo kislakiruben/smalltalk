@@ -37,6 +37,8 @@ const Main = () => {
   return (
     <div className="wrapper">
       <Header
+        accountBaseUrl={process.env.REACT_APP_ACCOUNT_BASE_URL}
+        meetingBaseUrl={process.env.REACT_APP_MEETING_BASE_URL}
         onLogOut={onLogOut}
         userName={user?.user_metadata.name || user?.email}
       />
