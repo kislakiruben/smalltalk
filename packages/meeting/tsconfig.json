@@ -16,7 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "rootDir": "src",
-    "outDir": "dis
+    "outDir": "build"
   },
   "include": ["src"],
   "references": [{ "path": "../ui" }]
