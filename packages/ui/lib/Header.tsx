@@ -48,10 +48,10 @@ export const Header = ({
                 fill="currentColor"
               />
             </svg>
-            <h1 className="font-extrabold text-lg">Dyte Connect</h1>
+            <h1 className="font-extrabold text-lg text-slate-600">SmallTalk</h1>
           </div>
           <nav className="grow">
-            <Link className="mr-5" href={meetingBaseUrl || "javascript:;"}>
+            <Link className="mr-6" href={meetingBaseUrl || "javascript:;"}>
               Meeting
             </Link>
             <Link href={accountBaseUrl || "javascript:;"}>Account</Link>
