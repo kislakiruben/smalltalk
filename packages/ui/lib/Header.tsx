@@ -65,7 +65,7 @@ export const Header = ({
           </div>
           <nav className="grow">
             <Link className="mr-6" href={meetingBaseUrl || "javascript:;"}>
-              Meeting
+              Lobbies
             </Link>
             <Link href={accountBaseUrl || "javascript:;"}>Account</Link>
           </nav>

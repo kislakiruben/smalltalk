@@ -33,6 +33,7 @@ const Meetings = () => {
     <DyteWrapper authToken={authToken} />
   ) : (
     <div className="meetings">
+      <h2 className="meetings__title">Lobbies</h2>
       {meetings.length > 0 ? (
         <ul className="meetings__list">
           {meetings.map((meeting: IMeeting) => (

@@ -8,10 +8,10 @@
     "ui:build": "npm run build -w @smalltalk/ui",
     "ui:dev": "npm run dev -w @smalltalk/ui",
     "ui:sb": "npm run storybook -w @smalltalk/ui",
-    "profile:dev": "npm run start -w @smalltalk/profile",
-    "profile:build": "npm run build -w @smalltalk/profile",
-    "meeting:dev": "npm run start -w @smalltalk/meeting",
-    "meeting:build": "npm run build -w @smalltalk/meeting",
+    "account:dev": "npm run start -w @smalltalk/account",
+    "account:build": "npm run build -w @smalltalk/account",
+    "lobbies:dev": "npm run start -w @smalltalk/lobbies",
+    "lobbies:build": "npm run build -w @smalltalk/lobbies",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/kislakiruben/smalltalk#readme",
   "workspaces": [
     "packages/ui",
-    "packages/meeting",
-    "packages/profile"
+    "packages/account",
+    "packages/lobbies"
   ]
 }
