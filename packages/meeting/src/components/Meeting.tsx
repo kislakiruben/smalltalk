@@ -1,14 +1,11 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "@smalltalk/ui";
 import pluralize from "pluralize";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import { currentAuthTokenState, participantsState } from "../atoms/dyte";
 import dyteApiClient from "../dyteApiClient";
-import {
-  currentUserParticipantSelector,
-  customParticipantIdSelector,
-} from "../selectors/dyte";
-import { userSelector } from "../selectors/auth";
+import { currentUserParticipantSelector } from "../selectors/dyte";
 import { IParticipant } from "../types";
 
 interface MeetingProps {
@@ -17,16 +14,17 @@ interface MeetingProps {
 }
 
 const Meeting = ({ id, title }: MeetingProps) => {
+  const { user } = useAuth0();
   const setAuthToken = useSetRecoilState(currentAuthTokenState);
-  const customParticipantId = useRecoilValue(customParticipantIdSelector);
-  const currentParticipant = useRecoilValue(currentUserParticipantSelector(id));
+  const currentParticipant = useRecoilValue(
+    currentUserParticipantSelector([id, user?.email])
+  );
   const participants = useRecoilValue(participantsState(id));
-  const user = useRecoilValue(userSelector);
   const onJoinMeeting = async () => {
     const response = await dyteApiClient.post(`/meetings/${id}/participants`, {
-      name: user?.user_metadata.name || user?.email,
+      name: user?.nickname || user?.name || user?.email,
       preset_name: "group_call_participant",
-      custom_participant_id: customParticipantId,
+      custom_participant_id: user?.email,
     });
 
     setAuthToken(response.data.data.token);
