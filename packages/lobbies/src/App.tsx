@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Header, Spinner } from "@smalltalk/ui";
+import { Button, Header, Spinner } from "@smalltalk/ui";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
@@ -72,7 +72,36 @@ const Main = () => {
         <div className="content">
           <Meetings />
         </div>
-      ) : null}
+      ) : (
+        <div className="hero">
+          <div className="hero__image">
+            <img
+              alt="Call you friends simply and simple with Salltalk"
+              className="hero__image"
+              src="hero.jpg"
+            />
+          </div>
+          <div className="hero__content">
+            <h2 className="hero__title">
+              It's easy talking to
+              <br />
+              your friends <br />
+              with <span>Smalltalk</span>
+            </h2>
+            <p className="hero__subtitle">
+              Call you friends simply and simple with Salltalk
+            </p>
+            <Button
+              className="hero__button"
+              onClick={onLogIn}
+              primary
+              type="button"
+            >
+              Get started
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
