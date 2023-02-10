@@ -4,26 +4,37 @@ import { Button } from "./Button";
 import { Link } from "./Link";
 
 interface HeaderProps {
+  accountBaseUrl?: string;
+  meetingBaseUrl?: string;
+  onLogIn: Function;
   onLogOut: Function;
   userName?: string;
-  meetingBaseUrl?: string;
-  accountBaseUrl?: string;
 }
 
 export const Header = ({
   accountBaseUrl,
   meetingBaseUrl,
+  onLogIn: onLogInCallback,
   onLogOut: onLogOutCallback,
   userName,
 }: HeaderProps) => {
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const onClick = async () => {
-    setIsLoggingOut(true);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const onLogOut = async () => {
+    setIsProcessing(true);
     try {
       await onLogOutCallback();
-      setIsLoggingOut(false);
+      setIsProcessing(false);
     } catch (e) {
-      setIsLoggingOut(false);
+      setIsProcessing(false);
+    }
+  };
+  const onLogIn = async () => {
+    setIsProcessing(true);
+    try {
+      await onLogInCallback();
+      setIsProcessing(false);
+    } catch (e) {
+      setIsProcessing(false);
     }
   };
 
@@ -61,11 +72,20 @@ export const Header = ({
               <p className="text-sm mr-3">
                 Welcome, <strong>{userName}</strong>
               </p>
-              <Button disabled={isLoggingOut} onClick={onClick} type="button">
+              <Button disabled={isProcessing} onClick={onLogOut} type="button">
                 Log out
               </Button>
             </div>
-          ) : null}
+          ) : (
+            <Button
+              disabled={isProcessing}
+              onClick={onLogIn}
+              primary
+              type="button"
+            >
+              Authenticate
+            </Button>
+          )}
         </div>
       </div>
     </header>

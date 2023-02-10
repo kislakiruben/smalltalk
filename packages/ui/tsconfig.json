@@ -18,7 +18,8 @@
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "strict": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "declaration": true
   },
   "include": ["lib"],
   "exclude": ["node_modules", "build"]

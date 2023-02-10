@@ -1,15 +1,15 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button, Header, Spinner } from "@smalltalk/ui";
+import { Header, Spinner } from "@smalltalk/ui";
 
 import Account from "./components/Account";
 
 const Main = () => {
   const { loginWithRedirect, logout, user, isAuthenticated, isLoading } =
     useAuth0();
-  const onClickLogIn = () => {
+  const onLogIn = () => {
     loginWithRedirect();
   };
-  const onLogOut = async () => {
+  const onLogOut = () => {
     logout();
   };
 
@@ -18,6 +18,7 @@ const Main = () => {
       <Header
         accountBaseUrl={process.env.REACT_APP_ACCOUNT_BASE_URL}
         meetingBaseUrl={process.env.REACT_APP_MEETING_BASE_URL}
+        onLogIn={onLogIn}
         onLogOut={onLogOut}
         userName={user?.name || user?.email}
       />
@@ -29,15 +30,7 @@ const Main = () => {
         <div className="content">
           <Account />
         </div>
-      ) : (
-        <div className="auth-wrapper">
-          <div className="auth-form">
-            <Button primary onClick={onClickLogIn} type="button">
-              Authenticate
-            </Button>
-          </div>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 };
