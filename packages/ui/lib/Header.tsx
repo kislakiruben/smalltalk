@@ -8,6 +8,7 @@ interface HeaderProps {
   meetingBaseUrl?: string;
   onLogIn: Function;
   onLogOut: Function;
+  showAuthControls: boolean;
   userName?: string;
 }
 
@@ -16,6 +17,7 @@ export const Header = ({
   meetingBaseUrl,
   onLogIn: onLogInCallback,
   onLogOut: onLogOutCallback,
+  showAuthControls,
   userName,
 }: HeaderProps) => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -67,25 +69,31 @@ export const Header = ({
             </Link>
             <Link href={accountBaseUrl || "javascript:;"}>Account</Link>
           </nav>
-          {userName ? (
-            <div className="flex items-center">
-              <p className="text-sm mr-3">
-                Welcome, <strong>{userName}</strong>
-              </p>
-              <Button disabled={isProcessing} onClick={onLogOut} type="button">
-                Log out
+          {showAuthControls ? (
+            userName ? (
+              <div className="flex items-center">
+                <p className="text-sm mr-3">
+                  Welcome, <strong>{userName}</strong>
+                </p>
+                <Button
+                  disabled={isProcessing}
+                  onClick={onLogOut}
+                  type="button"
+                >
+                  Log out
+                </Button>
+              </div>
+            ) : (
+              <Button
+                disabled={isProcessing}
+                onClick={onLogIn}
+                primary
+                type="button"
+              >
+                Authenticate
               </Button>
-            </div>
-          ) : (
-            <Button
-              disabled={isProcessing}
-              onClick={onLogIn}
-              primary
-              type="button"
-            >
-              Authenticate
-            </Button>
-          )}
+            )
+          ) : null}
         </div>
       </div>
     </header>
