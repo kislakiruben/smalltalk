@@ -1,17 +1,16 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Label, Input } from "@smalltalk/ui";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilValue } from "recoil";
 
-import { userSelector } from "../selectors/auth";
-import supabase from "../supabaseClient";
+import createApi from "../auth0ApiClient";
 
 const AccountProfile = () => {
-  const user = useRecoilValue(userSelector);
+  const { getAccessTokenSilently, user } = useAuth0();
   const emailInputRef = useRef<HTMLInputElement>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const [name, setName] = useState(user?.user_metadata.name || "");
-  const [location, setLocation] = useState(user?.user_metadata.location || "");
-  const [bio, setBio] = useState(user?.user_metadata.bio || "");
+  const [name, setName] = useState(user?.name || "");
+  const [location, setLocation] = useState(user?.location || "");
+  const [bio, setBio] = useState(user?.bio || "");
   const onChangeName = (event: React.FormEvent<HTMLInputElement>) => {
     setName((event.target as HTMLInputElement).value);
   };
@@ -23,13 +22,22 @@ const AccountProfile = () => {
   };
   const asyncSubmit = async () => {
     setIsSaving(true);
-    await supabase.auth.updateUser({
-      data: {
+    const token = await getAccessTokenSilently({
+      authorizationParams: {
+        audience: "https://smalltalk.uk.auth0.com/api/v2/",
+        scope: "openid profile email update:current_user_metadata",
+      },
+    });
+    const res = await createApi(token).patch(`/users/${user?.sub}`, {
+      name,
+      user_metadata: {
         bio,
-        name,
         location,
       },
     });
+
+    console.log(res);
+
     setIsSaving(false);
   };
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {

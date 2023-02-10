@@ -1,8 +1,6 @@
 import { Button, Label, Input } from "@smalltalk/ui";
 import { useState } from "react";
 
-import supabase from "../supabaseClient";
-
 const AccountPassword = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -12,9 +10,9 @@ const AccountPassword = () => {
   const asyncSubmit = async () => {
     setIsSaving(true);
     try {
-      await supabase.auth.updateUser({
-        password: newPassword,
-      });
+      // await supabase.auth.updateUser({
+      //   password: newPassword,
+      // });
       setIsSaving(false);
     } catch (e) {
       setIsSaving(false);

@@ -22,7 +22,7 @@ const Meeting = ({ id, title }: MeetingProps) => {
   const participants = useRecoilValue(participantsState(id));
   const onJoinMeeting = async () => {
     const response = await dyteApiClient.post(`/meetings/${id}/participants`, {
-      name: user?.nickname || user?.name || user?.email,
+      name: user?.name || user?.email,
       preset_name: "group_call_participant",
       custom_participant_id: user?.email,
     });

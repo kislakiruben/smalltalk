@@ -1,18 +1,45 @@
-import { Spinner } from "@smalltalk/ui";
-import { Suspense } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Header, Spinner } from "@smalltalk/ui";
 
-import Main from "./components/Main";
+import Account from "./components/Account";
 
-const App = () => (
-  <Suspense
-    fallback={
-      <div className="loading">
-        <Spinner />
-      </div>
-    }
-  >
-    <Main />
-  </Suspense>
-);
+const Main = () => {
+  const { loginWithRedirect, logout, user, isAuthenticated, isLoading } =
+    useAuth0();
+  const onClickLogIn = () => {
+    loginWithRedirect();
+  };
+  const onLogOut = async () => {
+    logout();
+  };
 
-export default App;
+  return (
+    <div className="wrapper">
+      <Header
+        accountBaseUrl={process.env.REACT_APP_ACCOUNT_BASE_URL}
+        meetingBaseUrl={process.env.REACT_APP_MEETING_BASE_URL}
+        onLogOut={onLogOut}
+        userName={user?.name || user?.email}
+      />
+      {isLoading ? (
+        <div className="loading">
+          <Spinner />
+        </div>
+      ) : isAuthenticated ? (
+        <div className="content">
+          <Account />
+        </div>
+      ) : (
+        <div className="auth-wrapper">
+          <div className="auth-form">
+            <Button primary onClick={onClickLogIn} type="button">
+              Authenticate
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Main;

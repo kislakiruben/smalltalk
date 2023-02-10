@@ -19,7 +19,7 @@ const Main = () => {
         accountBaseUrl={process.env.REACT_APP_ACCOUNT_BASE_URL}
         meetingBaseUrl={process.env.REACT_APP_MEETING_BASE_URL}
         onLogOut={onLogOut}
-        userName={user?.nickname || user?.name || user?.email}
+        userName={user?.name || user?.email}
       />
       {isLoading ? (
         <div className="loading">
