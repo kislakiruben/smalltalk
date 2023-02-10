@@ -3,6 +3,7 @@ import { Button } from "@smalltalk/ui";
 import pluralize from "pluralize";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
+import { userMetadataState } from "../atoms/auth";
 import { currentAuthTokenState, participantsState } from "../atoms/dyte";
 import dyteApiClient from "../dyteApiClient";
 import { currentUserParticipantSelector } from "../selectors/dyte";
@@ -20,9 +21,10 @@ const Meeting = ({ id, title }: MeetingProps) => {
     currentUserParticipantSelector([id, user?.email])
   );
   const participants = useRecoilValue(participantsState(id));
+  const userMetadata = useRecoilValue(userMetadataState);
   const onJoinMeeting = async () => {
     const response = await dyteApiClient.post(`/meetings/${id}/participants`, {
-      name: user?.name || user?.email,
+      name: userMetadata.name,
       preset_name: "group_call_participant",
       custom_participant_id: user?.email,
     });

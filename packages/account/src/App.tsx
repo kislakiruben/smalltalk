@@ -1,12 +1,11 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Header, Spinner } from "@smalltalk/ui";
 import { useEffect, useState } from "react";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 import { userMetadataState } from "./atoms/auth";
 import Account from "./components/Account";
 import createApi from "./auth0ApiClient";
-import { userNameSelector } from "./selectors/auth";
 
 const Main = () => {
   const {
@@ -17,8 +16,7 @@ const Main = () => {
     isAuthenticated,
     isLoading,
   } = useAuth0();
-  const setUserMetadata = useSetRecoilState(userMetadataState);
-  const userName = useRecoilValue(userNameSelector);
+  const [userMetadata, setUserMetadata] = useRecoilState(userMetadataState);
   const [isLoadingMetadata, setIsLoadingMetadata] = useState(false);
   const onLogIn = () => {
     loginWithRedirect();
@@ -37,15 +35,12 @@ const Main = () => {
           ignoreCache: true,
         },
       });
-
       const { data } = await createApi(token).get(`/users/${user?.sub}`);
 
-      if (data.user_metadata) {
-        setUserMetadata({
-          ...data.user_metadata,
-          email: user?.email,
-        });
-      }
+      setUserMetadata({
+        name: user?.name,
+        ...(data.user_metadata ? data.user_metadata : {}),
+      });
       setIsLoadingMetadata(false);
     };
 
@@ -62,7 +57,7 @@ const Main = () => {
         onLogIn={onLogIn}
         onLogOut={onLogOut}
         showAuthControls={!(isLoading || isLoadingMetadata)}
-        userName={userName}
+        userName={userMetadata.name}
       />
       {isLoading || isLoadingMetadata ? (
         <div className="loading">

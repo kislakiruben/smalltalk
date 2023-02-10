@@ -1,19 +1,17 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Label, Input } from "@smalltalk/ui";
 import { useEffect, useRef, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 import createApi from "../auth0ApiClient";
 import { userMetadataState } from "../atoms/auth";
-import { userNameSelector } from "../selectors/auth";
 
 const Account = () => {
   const { getAccessTokenSilently, user } = useAuth0();
   const [userMetadata, setUserMetadata] = useRecoilState(userMetadataState);
-  const userName = useRecoilValue(userNameSelector);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const [name, setName] = useState(userName || "");
+  const [name, setName] = useState(userMetadata.name || "");
   const [location, setLocation] = useState(userMetadata.location || "");
   const [bio, setBio] = useState(userMetadata.bio || "");
   const onChangeName = (event: React.FormEvent<HTMLInputElement>) => {
