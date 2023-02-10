@@ -44,7 +44,7 @@ const Meetings = () => {
         </ul>
       ) : (
         <div className="meetings__empty">
-          <p>There are not meetings</p>
+          <p>There are no meetings</p>
           <Button
             disabled={isCreating}
             onClick={onCreateMeeting}

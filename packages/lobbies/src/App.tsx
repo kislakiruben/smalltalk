@@ -76,7 +76,7 @@ const Main = () => {
         <div className="hero">
           <div className="hero__image">
             <img
-              alt="Call you friends simply and simple with Salltalk"
+              alt="Call you friends simply and simple with SmallTalk"
               className="hero__image"
               src="hero.jpg"
             />
@@ -86,10 +86,10 @@ const Main = () => {
               It's easy talking to
               <br />
               your friends <br />
-              with <span>Smalltalk</span>
+              with <span>SmallTalk</span>
             </h2>
             <p className="hero__subtitle">
-              Call you friends simply and simple with Salltalk
+              Call you friends simply and simple with SmallTalk
             </p>
             <Button
               className="hero__button"
