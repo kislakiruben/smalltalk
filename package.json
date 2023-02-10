@@ -9,7 +9,9 @@
     "ui:dev": "npm run dev -w @smalltalk/ui",
     "ui:sb": "npm run storybook -w @smalltalk/ui",
     "profile:dev": "npm run start -w @smalltalk/profile",
+    "profile:build": "npm run build -w @smalltalk/profile",
     "meeting:dev": "npm run start -w @smalltalk/meeting",
+    "meeting:build": "npm run build -w @smalltalk/meeting",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
